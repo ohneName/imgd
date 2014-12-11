@@ -204,8 +204,25 @@ func setupCache() {
 }
 
 func setupLog(logBackend *logging.LogBackend) {
-	logging.SetBackend(logBackend)
 	logging.SetFormatter(logging.MustStringFormatter(format))
+	logBackendLeveled := logging.AddModuleLevel(logBackend)
+
+	switch config.LogLevel {
+	case "CRITICAL":
+		logBackendLeveled.SetLevel(logging.CRITICAL, "")
+	case "ERROR":
+		logBackendLeveled.SetLevel(logging.ERROR, "")
+	case "WARNING":
+		logBackendLeveled.SetLevel(logging.WARNING, "")
+	case "NOTICE":
+		logBackendLeveled.SetLevel(logging.NOTICE, "")
+	case "INFO":
+		logBackendLeveled.SetLevel(logging.INFO, "")
+	default:
+		logBackendLeveled.SetLevel(logging.DEBUG, "")
+	}
+
+	logging.SetBackend(logBackendLeveled)
 }
 
 func main() {

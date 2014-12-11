@@ -15,8 +15,9 @@ const (
 )
 
 type Configuration struct {
-	Address string
-	Cache   string
+	Address  string
+	Cache    string
+	LogLevel string
 
 	Redis struct {
 		Address  string

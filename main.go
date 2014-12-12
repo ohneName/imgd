@@ -239,7 +239,7 @@ func main() {
 	})
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, "https://minotar.net/", 302)
+		http.Redirect(w, r, "https://ohne-name.de/", 302)
 	})
 
 	http.Handle("/", r)
